@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOPOLOGI BUS</title>
+    <style>
+        /* Variabel warna */
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #f1f5f9;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --background: #ffffff;
+            --card-bg: #f8fafc;
+            --border: #e2e8f0;
+            --accent: #10b981;
+        }
+        
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+        }
+        
+        /* Card Styles */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title-icon {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Team Members */
+        .members-list {
+            list-style: none;
+        }
+        
+        .member-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .member-item:last-child {
+            border-bottom: none;
+        }
+        
+        .member-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        /* Topology Visualization */
+        .topology {
+            position: relative;
+            height: 200px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border);
+        }
+        
+        .bus-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transform: translateY(-50%);
+        }
+        
+        .node {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        
+        .node-label {
+            position: absolute;
+            top: 60%;
+            font-size: 0.75rem;
+            text-align: center;
+            width: 80px;
+            left: -32px;
+            color: var(--text-light);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🌐</span>
+                    Topologi Jaringan
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Informasi Kelompok -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="card-title-icon">👥</span>
+                Informasi Kelompok
+            </h2>
+            <p><strong>Nama Kelompok:</strong> Kelompok 5</p>
+            <p><strong>Topologi Jaringan:</strong> Topologi Bus</p>
+            <p><strong>Mata Pelajaran:</strong> PPJ</p>
+        </div>
+        
+        <div class="grid">
+            <!-- Anggota Kelompok -->
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-title-icon">👤</span>
+                    Anggota Kelompok
+                </h2>
+                <ul class="members-list">
+                    <li class="member-item">
+                        <div class="member-avatar">A</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450001</small>
+                        </div>
+                    </li>
+                    <li class="member-item">
+                        <div class="member-avatar">B</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450002</small>
+                        </div>
+                    </li>
+                    <li class="member-item">
+                        <div class="member-avatar">C</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450003</small>
+                        </div>
+                    </li>
+                    <li class="member-item">
+                        <div class="member-avatar">D</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450004</small>
+                        </div>
+                    </li>
+                    <li class="member-item">
+                        <div class="member-avatar">D</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450004</small>
+                        </div>
+                    </li>
+                    <li class="member-item">
+                        <div class="member-avatar">D</div>
+                        <div>
+                            <div>Reza Maulana</div>
+                            <small class="text-light">211011450004</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Deskripsi Topologi -->
+            <div class="card">
+                <h2 class="card-title">
+                    <span class="card-title-icon">📋</span>
+                    Deskripsi Topologi Bus
+                </h2>
+                <p>Topologi bus adalah suatu jenis topologi jaringan yang menggunakan sebuah kabel tunggal sebagai media transmisi yang terpusat dimana semua client dan server dihubungkan.</p>
+                <p><strong>Kelebihan:</strong></p>
+                <ul>
+                    <li>Biaya instalasi yang murah</li>
+                    <li>Layout kabel sederhana</li>
+                    <li>Mudah dikembangkan</li>
+                </ul>
+                <p><strong>Kekurangan:</strong></p>
+                <ul>
+                    <li>Deteksi kesalahan yang sangat kecil</li>
+                    <li>Lalu lintas padat akan memperlambat jaringan</li>
+                    <li>Sulit melakukan troubleshoot</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Visualisasi Topologi -->
+        <div class="card">
+            <h2 class="card-title">
+                <span class="card-title-icon">🔍</span>
+                Visualisasi Topologi Bus
+            </h2>
+            <div class="topology">
+                <div class="bus-line"></div>
+                <div class="node" style="left: 10%;">
+                    <div class="node-label">Server</div>
+                </div>
+                <div class="node" style="left: 30%;">
+                    <div class="node-label">Client 1</div>
+                </div>
+                <div class="node" style="left: 50%;">
+                    <div class="node-label">Client 2</div>
+                </div>
+                <div class="node" style="left: 70%;">
+                    <div class="node-label">Client 3</div>
+                </div>
+                <div class="node" style="left: 90%;">
+                    <div class="node-label">Client 4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Network Pioneers - Topologi Bus | Jaringan Komputer</p>
+        </div>
+    </footer>
+</body>
+</html>

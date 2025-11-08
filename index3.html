@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Warung GG — Gudang Godong | Menu</title>
+  <meta name="description" content="Menu Warung GG Gudang Godong — Responsive dengan keranjang & WhatsApp checkout" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style3.css"/>
+  <style>
+    /* small helpers + stable swiper sizing */
+    .aspect-4-3 { aspect-ratio: 4 / 3; }
+    .swiper { width:100%; overflow:hidden; }
+    .swiper .swiper-wrapper { align-items: stretch; } /* make slides match height */
+    .swiper-slide { display:flex; align-items:center; justify-content:center; }
+    .swiper-slide img { display:block; width:100%; height:100%; object-fit:cover; border-radius:0.5rem; }
+    /* card constraints */
+    .menu-card { display:flex; flex-direction:column; min-height:0; }
+    .menu-card .info { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+  <!-- NAVBAR: logo + nama kiri, keranjang kanan -->
+  <nav class="sticky top-0 bg-white shadow z-50">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white font-bold">GG</div>
+        <div>
+          <div class="text-sm text-gray-500">Warung</div>
+          <div class="text-lg font-semibold">Warung GG — Gudang Godong</div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a class="text-sm text-gray-600" href="http://biji-salak.netlify.app" target="_blank">Website</a>
+        <button id="cartBtn" class="relative bg-teal-600 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 7h12l-2-7M9 21a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z"/></svg>
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="p-4 max-w-6xl mx-auto">
+    <!-- Makanan -->
+    <h2 class="text-xl font-bold mt-6 mb-3 border-b-2 border-gray-300">🍚 Makanan</h2>
+    <div id="makanan" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+    <!-- Tambahan -->
+    <h2 class="text-xl font-bold mt-6 mb-3 border-b-2 border-gray-300">🍳 Tambahan</h2>
+    <div id="tambahan" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+
+    <!-- Minuman -->
+    <h2 class="text-xl font-bold mt-6 mb-3 border-b-2 border-gray-300">🥤 Minuman</h2>
+    <div id="minuman" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+  </main>
+
+  <!-- Modal keranjang -->
+  <div id="cartModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-xl p-4 w-80 max-h-[80vh] overflow-y-auto">
+      <h3 class="font-bold text-lg mb-2">Keranjang</h3>
+      <ul id="cartItems" class="mb-3 space-y-2"></ul>
+      <p class="font-semibold">Total: <span id="cartTotal">Rp 0</span></p>
+      <button id="checkoutBtn" class="w-full mt-3 bg-teal-600 text-white px-4 py-2 rounded">Checkout via WhatsApp</button>
+      <button id="closeCart" class="w-full mt-2 bg-gray-300 px-4 py-2 rounded">Tutup</button>
+    </div>
+  </div>
+
+  <footer class="text-center text-sm text-gray-500 p-4 mt-6">
+    © 2025 Warung GG — Gudang Godong • <a href="http://biji-salak.netlify.app" target="_blank" class="underline">Website</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    /* DATA (default gambar placeholder Hu_Tao, ganti tiap item nanti) */
+    const IMG = "https://hutaobot.moe/img/char/Hu_Tao.png";
+
+    const MENU = {
+      makanan: [
+        {id:1, name:"Nasi Pecel", price:8000, img:[IMG]},
+        {id:2, name:"Mie Pecel", price:8000, img:[IMG]},
+        {id:3, name:"Nasi Ayam Geprek", price:12000, img:[IMG, IMG]},
+        {id:4, name:"Nasi Ayam Goreng Original", price:17000, img:[IMG]},
+        {id:5, name:"Nasi Ayam Rica", price:13000, img:[IMG]},
+        {id:6, name:"Nasi Bebek Goreng", price:25000, img:[IMG]},
+        {id:7, name:"Nasi Nila Goreng", price:16000, img:[IMG]},
+        {id:8, name:"Nasi Bawal Goreng", price:13000, img:[IMG]},
+        {id:9, name:"Nasi Bandeng Presto", price:14500, img:[IMG]},
+      ],
+      tambahan: [
+        {id:20, name:"Trancam", price:4000, img:[IMG]},
+        {id:21, name:"Gudangan", price:4000, img:[IMG]},
+        {id:22, name:"Kangkung Oseng", price:5000, img:[IMG]},
+        {id:23, name:"Jamur Oseng", price:5000, img:[IMG]},
+        {id:24, name:"Jamur Krispy", price:7000, img:[IMG]},
+        {id:25, name:"Telur Dadar", price:4000, img:[IMG]},
+      ],
+      minuman: [
+        {id:30, name:"Teh Panas", price:3000, img:[IMG]},
+        {id:31, name:"Es Teh", price:4000, img:[IMG]},
+        {id:32, name:"Jeruk Anget", price:4000, img:[IMG]},
+        {id:33, name:"Es Jeruk", price:5000, img:[IMG]},
+        {id:34, name:"Es Teh Krampul", price:6000, img:[IMG]},
+        {id:35, name:"Kopi Hitam", price:6000, img:[IMG]},
+        {id:36, name:"Air Mineral", price:4000, img:[IMG]},
+      ]
+    };
+
+    /* STATE */
+    let cart = {};
+    const fmt = n => "Rp " + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    /* RENDERING */
+    function renderSection(id, items){
+      const wrap = document.getElementById(id);
+      wrap.innerHTML = ""; // clear (prevent duplicate render)
+      items.forEach(it=>{
+        const card = document.createElement("div");
+        card.className = "menu-card bg-white rounded-xl shadow p-2 flex flex-col";
+
+        // build slides markup
+        const slidesHtml = it.img.map(src => `<div class="swiper-slide"><img src="${src}" alt="${escapeHtml(it.name)}"/></div>`).join("");
+
+        card.innerHTML = `
+          <div class="swiper mb-2">
+            <div class="swiper-wrapper">${slidesHtml}</div>
+            <div class="swiper-pagination"></div>
+          </div>
+          <div class="info">
+            <div>
+              <h3 class="font-semibold text-sm">${escapeHtml(it.name)}</h3>
+              <div class="text-sm text-gray-500">${fmt(it.price)}</div>
+            </div>
+            <div class="mt-2">
+              <button class="w-full bg-teal-600 text-white px-3 py-1 rounded" data-add="${it.id}" data-cat="${id}">Tambah</button>
+            </div>
+          </div>
+        `;
+
+        wrap.appendChild(card);
+      });
+    }
+
+    // escape minimal
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    /* CART LOGIC */
+    function addToCartById(id,cat){
+      const item = MENU[cat].find(m => m.id === id);
+      if(!item) return;
+      if(!cart[id]) cart[id] = {...item, qty:0};
+      cart[id].qty++;
+      renderCart();
+    }
+
+    function renderCart(){
+      const wrap = document.getElementById("cartItems");
+      wrap.innerHTML = "";
+      let total = 0, count = 0;
+      Object.values(cart).forEach(it=>{
+        total += it.price * it.qty;
+        count += it.qty;
+        const li = document.createElement("li");
+        li.className = "flex justify-between items-center";
+        li.innerHTML = `
+          <div class="pr-2">
+            <div class="font-medium text-sm">${escapeHtml(it.name)}</div>
+            <div class="text-xs text-gray-500">Qty: ${it.qty}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="px-2 py-1 bg-gray-200 rounded" data-change="${it.id}" data-delta="-1">-</button>
+            <button class="px-2 py-1 bg-gray-200 rounded" data-change="${it.id}" data-delta="1">+</button>
+            <div class="ml-2 text-sm font-semibold">${fmt(it.price * it.qty)}</div>
+          </div>
+        `;
+        wrap.appendChild(li);
+      });
+      document.getElementById("cartTotal").textContent = fmt(total);
+      document.getElementById("cartCount").textContent = count;
+    }
+
+    function changeQty(id, delta){
+      if(!cart[id]) return;
+      cart[id].qty += delta;
+      if(cart[id].qty <= 0) delete cart[id];
+      renderCart();
+    }
+
+    /* INITIAL RENDER */
+    renderSection("makanan", MENU.makanan);
+    renderSection("tambahan", MENU.tambahan);
+    renderSection("minuman", MENU.minuman);
+
+    /* INIT SWIPERS per-card and wire image load => update swiper */
+    const swipers = [];
+    document.querySelectorAll(".swiper").forEach(sw => {
+      const pag = sw.querySelector(".swiper-pagination");
+      const s = new Swiper(sw, {
+        slidesPerView: 1,
+        spaceBetween: 8,
+        loop: true,
+        pagination: { el: pag, clickable: true },
+        observer: true,
+        observeParents: true,
+      });
+      // update when images inside this swiper finish loading
+      sw.querySelectorAll("img").forEach(img => {
+        if(img.complete) s.update();
+        else img.addEventListener("load", () => s.update());
+      });
+      swipers.push(s);
+    });
+
+    // also ensure swipers update once everything loaded
+    window.addEventListener("load", () => swipers.forEach(s => s.update()));
+
+    /* EVENTS: delegate add-to-cart buttons and qty changes */
+    document.addEventListener("click", (e) => {
+      const add = e.target.closest("[data-add]");
+      if(add){
+        const id = parseInt(add.dataset.add,10);
+        const cat = add.dataset.cat;
+        addToCartById(id, cat);
+        return;
+      }
+      const change = e.target.closest("[data-change]");
+      if(change){
+        const id = parseInt(change.dataset.change,10);
+        const delta = parseInt(change.dataset.delta,10);
+        changeQty(id, delta);
+        return;
+      }
+      // cart open/close
+      if(e.target.id === "cartBtn") document.getElementById("cartModal").classList.remove("hidden");
+      if(e.target.id === "closeCart") document.getElementById("cartModal").classList.add("hidden");
+      if(e.target.id === "checkoutBtn"){
+        if(Object.keys(cart).length === 0){ alert("Keranjang kosong"); return; }
+        let teks = "Pesanan Warung GG:\\n";
+        let total = 0;
+        Object.values(cart).forEach(it=>{
+          teks += `${it.name} x${it.qty} = ${fmt(it.price*it.qty)}\\n`;
+          total += it.price * it.qty;
+        });
+        teks += `\\nTotal: ${fmt(total)}`;
+        const url = "https://wa.me/085647008810?text=" + encodeURIComponent(teks);
+        window.open(url, "_blank");
+      }
+    });
+
+    // Also allow keyboard Escape to close modal
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") document.getElementById("cartModal").classList.add("hidden");
+    });
+
+    // helper: small initial cart render
+    renderCart();
+  </script>
+</body>
+</html>

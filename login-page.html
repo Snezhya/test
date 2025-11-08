@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="shortcut icon" href="img/Hu-Tao-PNG-Images-HD.png" type="image/x-icon">
+  <link rel="stylesheet" href="style3.css">
+</head>
+
+<body class="body" onload="startTime()">
+  <!-- Logo Google -->
+  <img src="img/Hu-Tao-PNG-Image.png" class="logo" alt="ayang ku">
+  <!-- javascript clock -->
+  <div id="clock-pepek"></div>
+  <!-- Form Login -->
+  <div class="LOGIN"> 
+    <div class="bck">
+      <form id="form">
+        <h4 class="login-text">EMAIL</h4>
+        <input type="email" placeholder="Enter your email" class="login" required><br><br>
+        <h4 class="login-text">PASSWORD</h4>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        
+        <input type="password" placeholder="Enter your password" class="password" required><br><br>
+        <input type="button" value="Show Password" class="show"><br><br>
+        <hr>
+        <br>
+        <input type="submit" value="LOGIN" class="login-button">
+        <input type="submit" value="REGISTER" class="login-button">
+      </form>
+    </div>
+  </div>
+  <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+  <!-- sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <h2>Kucing</h2>
+    <ul class="ul                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      -sidebar">
+      <div class="sidebar-content">
+        <!-- <button onclick="myfungtion ()"><span>📅</span> Jadwal</button> -->
+        <!-- <li><span>📅</span> tidak tersedia</li> -->
+        <li><span>💬</span> <a href="index4.html" class="sidebar-text">chat</a></li>
+        <li><span>🥚</span> <a href="index4.html" class="sidebar-text"> Tentang</a></li>
+        <hr>
+        <li><span>⚙️</span><a href="index4.html" class="sidebar-text">Pengatiran</a></li>
+        <li><span>🎨</span><a href="index4.html" class="sidebar-text">Ubah Tema</a></li>
+        <li><span>ℹ️</span><a href="index4.html" class="sidebar-text"> FAQ</a></li>
+      </div>
+    </ul>
+    <img src="img/images-removebg-preview.png" alt="Waifu" class="waifu-img">
+  </aside>
+  <div> 
+  </div>
+  <script>
+document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    window.location.href = 'index3.html';
+  });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const showBtn = document.querySelector(".show");
+    const passInput = document.querySelector(".password");
+
+    showBtn.addEventListener("click", function () {
+      if (passInput.type === "password") {
+        passInput.type = "text";
+        showBtn.value = "Hide Password";
+      } else {
+        passInput.type = "password";
+        showBtn.value = "Show Password";
+      }
+    });
+  });
+
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+
+function startTime() {
+  const today = new
+  Date();
+  let h = 
+  today.getHours();
+  let m =
+  today.getMinutes();
+  let s =
+  today.getSeconds();
+  // let ms = 
+  // today.getMilliseconds();
+
+
+  document.getElementById('clock-pepek').innerHTML = h + ":" + m + ":" + s;
+  setTimeout(startTime,1000);
+}
+
+  // function CheckTime(i) {
+  // if (i<10) {i = "0" + i};
+  // return i;
+// }
+
+</script>
+</body>
+
+</html>

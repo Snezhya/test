@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <button class="sidebar-button" onclick="toggleSidebar()">☰</button>
+  <div class="div-nav">
+    <nav class="navbar">
+      <div class="a-nav">
+        <a href="#" class="nav-text"><h1>home</h1></a>
+        <a href="#" class="nav-text"><h1>home</h1></a>
+        <a href="#" class="nav-text"><h1>home</h1></a>
+        <a href="#" class="nav-text"><h1>home</h1></a>
+        <input type="search" name="" id="" placeholder="search" class="search-nav">
+      </div>
+      <div>
+        <aside class="sidebar" id="sidebar">
+          <h2>sidebar</h2>
+          <ul class="ul-sidebar">
+            <!-- <button class="sidebar-button-close" onclick="toggleSidebarClose()">☰</button> -->
+            <div class="div-sidebar">
+              <li class="li-text">apalah</li>
+              <li class="li-text">apalah</li>
+              <li class="li-text">apalah</li>
+              <li class="li-text">apalah</li>
+              <hr class="li-text">
+              <li class="li-text">apalah</li>
+              <li class="li-text">apalah</li>
+            </div>
+          </ul>
+        </aside>
+      </div>
+    </nav>
+  </div>
+  <div>
+    
+  </div>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active')
+    }
+    function toggleSidebarClose() {
+      document.getElementById('sidebar').classList.toggle('close')
+    }
+  </script>
+</body>
+</html>
