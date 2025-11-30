@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container-main {
+    position: relative;
+
+}
+
+.container-img-gl {
+    position: relative;
+    z-index: 0;
+}
+
+.h1-main {
+    position: absolute;
+    top: 10vh;
+    left: 15vw;
+    font-size: 40vh;
+    color: aliceblue;
+    border: 120px;
+    border-color: crimson;
+    animation: char 2s linear;
+    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC, 10px 16px 20px rgba(206,89,55,0.08);
+}
+
+.par-main {
+    position: absolute;
+    top: 50vh;
+    padding: 12px;
+    margin-left: 4vh;
+    backdrop-filter: blur(10px);
+    margin-right: 150vh;
+    border-color: black;
+    border: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    color: black;
+    font-size: 1.2em;
+    margin-top: 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 20px 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+}
+
+/* .wrap-par {
+    position: relative;
+    background-color: aqua;
+    backdrop-filter: blur(10px);
+} */
+
+.wrap-character {
+}
+
+.character-hutao {
+    position: absolute;
+    width: 12%;
+    height: 80%;
+    object-fit: contain;
+    margin: 0px;
+    top: 12%;
+    display: block;
+    width: 99.2vw;
+    animation: char 2s linear;
+}
+
+@keyframes char {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.img {
+    margin: 0px;
+    display: flex;
+    display: block;
+    width: 99.2vw;
+    z-index: 0;
+    /* overflow: hidden; */
+    /* height: 100vh;    */
+}
+
+/* .shadow {
+    position: absolute;
+    padding-top: 0px;
+    bottom: 0;
+    top: 5.7vh;
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0px -150px 200px 0px rgb(0, 0, 0);
+    z-index: 20;
+} */
+
+.back {
+    background: #000;
+    position: absolute;
+    padding: 50vh;
+    width: 99.2vw;
+}
+
+.second-sec {
+    position: absolute;
+}
