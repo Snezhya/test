@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,9 +26,19 @@
     color: aliceblue;
     border: 120px;
     border-color: crimson;
-    animation: char 2s linear;
+    animation: char1 2s linear;
     text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC, 10px 16px 20px rgba(206,89,55,0.08);
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
 
 .par-main {
     position: absolute;
@@ -81,11 +95,22 @@
     }
 }
 
+@keyframes char1 {
+    from {
+        opacity: 0;
+        transform: translatey(-200px);
+    }
+    to {
+        opacity: 1;
+        transform: translatey(0px);
+    }
+}
+
 .img {
     margin: 0px;
     display: flex;
     display: block;
-    width: 99.2vw;
+    width: 100vw;
     z-index: 0;
     /* overflow: hidden; */
     /* height: 100vh;    */
@@ -105,10 +130,187 @@
 .back {
     background: #000;
     position: absolute;
-    padding: 50vh;
-    width: 99.2vw;
+    padding: 60vh;
+    width: 100vw;
 }
 
 .second-sec {
     position: absolute;
+}
+
+.h1-sec {
+    position: absolute;
+    top: 10vh;
+    left: 35vw;
+    font-size: 10vh;
+    color: aliceblue;
+    border: 120px;
+    border-color: crimson;
+    animation: char 2s linear;
+    text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC, 10px 16px 20px rgba(206,89,55,0.08);
+    z-index: 10;
+}
+
+.container-img-lg,
+.container-img-lg2 {
+  display: flex;
+  justify-content: start;
+  padding-top: 35vh;
+  animation: lg-animate 30s linear infinite;
+  z-index: 20;
+  position: relative;
+  gap: 2vh;
+}
+
+.container-img-lg2 {
+  gap: 15px;
+  display: flex;
+  padding-top: 1vh;
+  justify-content: start;
+  animation: lg-animate2 30s linear infinite;
+}
+
+.third-sec {
+    padding-top: 120vh;
+}
+
+.img-lg {
+  width: 20vh;
+  z-index: 20;
+  flex-wrap: nowrap;
+}
+
+.img-bg-3 {
+    position: relative; 
+}
+
+.bg-img-sec3 {
+    width: 100%;
+    display: block;
+}
+
+.sss {
+    position: absolute;
+    top: 10vh;
+    size: larger;
+    left: 60vh;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    z-index: 10;
+    font-size: 20vh;
+}
+
+.card-sec3 {
+    display: flex;
+    gap: 25px;
+    position: absolute;
+    top: 260vh;
+    height: 120px;
+    left: 2vh;
+    animation: lg-animate 20s linear infinite;
+}
+
+.card-sec3:hover,
+.card-sec3-p2:hover {
+    animation-play-state: paused;
+}
+
+.card-sec3-p2 {
+    display: flex;
+    gap: 25px;
+    position: absolute;
+    top: 290.7vh;
+    height: 120px;
+    left: 2vh;
+    animation: lg-animate2 20s linear infinite;
+}
+
+.card {
+    width: 17vh;
+    height: 30vh;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.5s;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+
+}
+
+.card .layer {
+    background: linear-gradient();
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 75%;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card .info {
+    position: absolute;
+    bottom: -50%;
+    padding: 15px;
+    opacity: 0;
+    transition: 0.5s bottom, 1.75s opacity;
+}
+
+.info p {
+    font-size: 8px;
+    margin-top: 3px;
+}
+
+.info button {
+    background: ;
+    border: none;
+    padding: 8px 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.card:hover,
+.card:hover img,
+.card:hover layer {
+    transform: scale(1.1);
+}
+
+.card:hover > .layer {
+    opacity: 1;
+}
+
+.card:hover > .info {
+    bottom: 0;
+    opacity: 1;
+}
+
+.card-sec3:hover > .card:not(:hover) {
+    filter: blur(5px);
+}
+
+.card-sec3-p2:hover > .card:not(:hover) {
+    filter: blur(5px);
+}
+
+
+@keyframes lg-animate {
+  0%   { translate: 0; }
+  50%  { translate: calc(-2 * 16rem); }
+  100%  { translate: 0; }
+}
+
+@keyframes lg-animate2 {
+  0%  { translate: calc(-2 * 16rem); }
+  50%   { translate: 0; }
+  100%  { translate: calc(-2 * 16rem); }
+}
+
+@media (max-width: 500px) {
 }
