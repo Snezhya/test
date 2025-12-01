@@ -63,6 +63,10 @@
     background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
 }
 
+/* .par-main:hover {
+    transform: scale(1.5);
+} */
+
 /* .wrap-par {
     position: relative;
     background-color: aqua;
@@ -189,7 +193,15 @@
     display: block;
 }
 
-.sss {
+.sss1 ,
+.sss2 ,
+.sss3 ,
+.sss4 ,
+.sss5 ,
+.sss6 ,
+.sss7 ,
+.sss8 ,
+.sss9 {
     position: absolute;
     top: 10vh;
     size: larger;
@@ -200,7 +212,42 @@
     font-weight: bold;
     z-index: 10;
     font-size: 20vh;
+    display: grid;
 }
+
+.sss2 {
+    left: 70vh;
+}
+
+.sss3 {
+    left: 80vh;
+}
+
+.sss4 {
+    left: 90vh;
+}
+
+.sss5 {
+    left: 100vh;
+}
+
+.sss6 {
+    left: 110vh;
+}
+
+.sss7 {
+    left: 120vh;
+}
+
+.sss8 {
+    left: 129vh;
+}
+
+.sss9 {
+    left: 140vh;
+}
+
+
 
 .card-sec3 {
     display: flex;
@@ -245,7 +292,18 @@
 }
 
 .card .layer {
-    background: linear-gradient();
+    background: ;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    color: black;
+    font-size: 1.2em;
+    margin-top: 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 20px 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -268,7 +326,7 @@
 }
 
 .info button {
-    background: ;
+    background: black;
     border: none;
     padding: 8px 12px;
     font-weight: bold;
@@ -299,6 +357,42 @@
     filter: blur(5px);
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+/* <!-- Using the custom property `--i` to calculate the animation duration. --> */
+li {
+  /* animation-name: falling; */
+  /* animation-duration: calc(var(--i) * 1s); */
+}
+
+
+.container-sec4 {
+    position: relative;
+}
+
+.bg-sec4 {
+    object-fit: cover;
+    height: 115vh;
+}
+
+.head-sec4 {
+    position: absolute;
+    top: 0;
+    left: 51vh;
+}
+
+.font-head-sec4 {
+    font-size: 5vw;
+    color: #EEEEEE;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 @keyframes lg-animate {
   0%   { translate: 0; }
@@ -314,3 +408,4 @@
 
 @media (max-width: 500px) {
 }
+
